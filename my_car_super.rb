@@ -1,4 +1,5 @@
 class MyVehicle
+  attr_accessor :number_of_vehicles
 
   @@number_of_vehicles = 0
 
@@ -29,16 +30,18 @@ class MyVehicle
     puts "Your vehicle gets #{miles / gallons} mpg."
   end
 
-  def total_number_of_vehicles
+  def self.total_number_of_vehicles
+    @@number_of_vehicles = MyCar.number_of_cars + MyTruck.number_of_trucks
     "There are #{number_of_vehicles} vehicles."
   end
 
 end
 
 class MyCar < MyVehicle
-  attr_accessor :color, :year, :make, :model, :color, :type, :number_of_vehicles
+  attr_accessor :color, :year, :make, :model, :color, :type, :number_of_cars
   #attr_reader :year
   VEHICLE_TYPE = "car"
+  @@number_of_cars = 0
 
   def initialize(year, make, model, color)
     @year = year
@@ -46,16 +49,18 @@ class MyCar < MyVehicle
     @model = model
     @color = color
     @type = VEHICLE_TYPE
-    @@number_of_vehicles += 1
+    @@number_of_cars += 1
     @current_speed = 0
   end
 
 end
 
 class MyTruck < MyVehicle
-  attr_accessor :color, :year, :make, :model, :color, :type, :number_of_vehicles
+  attr_accessor :color, :year, :make, :model, :color, :type, :number_of_trucks
   #attr_reader :year
   VEHICLE_TYPE = "truck"
+  @@number_of_trucks = 0
+
 
   def initialize(year, make, model, color)
     @year = year
@@ -63,7 +68,7 @@ class MyTruck < MyVehicle
     @model = model
     @color = color
     @type = VEHICLE_TYPE
-    @@number_of_vehicles += 1
+    @@number_of_trucks += 1
     @current_speed = 0
   end
 
@@ -104,7 +109,7 @@ puts sierra.year
 MyTruck.calculate_gas_mileage(280,19)
 puts sierra
 
-MyCar.total_number_of_vehicles
-MyTruck.total_number_of_vehicles
+#MyCar.total_number_of_vehicles
+#MyTruck.total_number_of_vehicles
 MyVehicle.total_number_of_vehicles
 
